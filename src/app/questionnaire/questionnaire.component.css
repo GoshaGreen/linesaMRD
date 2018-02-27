@@ -1,0 +1,19 @@
+.e-h2 {
+  margin: 10px;
+}
+
+.e-h2r {
+  margin: 10px;
+  color: red;
+}
+
+.e-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.e-margin {
+  margin: 0 10px;
+}

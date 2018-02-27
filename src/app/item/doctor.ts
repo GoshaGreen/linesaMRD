@@ -1,11 +1,12 @@
-import {Visit} from './visit';
+/*import {Visit} from './visit';*/
 
 export class Doctor {
   idDoctor: number;
-  visits: Visit[];
-  FirstName: string;
-  MiddleName: string;
-  LastName: string;
-  Degree: string;
-  Position: string;
+  position: string;
+  degree: string;
+  firstName: string;
+  lastName: string;
+  middleName: string;
 }
+
+/*visits: Visit[];*/

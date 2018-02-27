@@ -12,12 +12,13 @@ const httpOptions = {
 
 @Injectable()
 export class ShortVisitsService {
-  private visitUrl = 'http://localhost:8080/Visit';  // URL to web api
+  private Url = 'http://localhost:8080/';
+  private visitUrl = this.Url + 'Visit';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
   getShortVisits (): Observable<ShortVisit[]> {
-    return this.http.get<ShortVisit[]>('http://localhost:8080/Visit/Short');
+    return this.http.get<ShortVisit[]>(this.visitUrl + '/Short');
   }
 
   deleteVisit(visit: Visit | number): Observable<Visit> {

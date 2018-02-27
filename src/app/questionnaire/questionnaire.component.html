@@ -1,8 +1,67 @@
-<p>
-  questionnaire works!
-  <br/>
-  {{id}}
-  <br/>
-  {{this.blocksAmount}}
+<br/>
+<h1>{{que?.questionBlocks[currentBlock].questionBlockText}}</h1>
+<br/>
 
-</p>
+<div *ngFor="let question of this.que?.questionBlocks[currentBlock].questions">
+  <div *ngIf="!((question.activatingVariant)&&!(checked[question.activatingVariant.idAnswer]))">
+    <mat-card>
+      <h2 class="e-h2">{{question.questionText}}<span class="e-h2r" *ngIf="question.mandatory">*</span> </h2>
+      <mat-divider></mat-divider>
+
+      <div [ngSwitch]="question.questionType.idQuestionType">
+        <br/>
+        <div *ngSwitchCase="1">
+          <mat-radio-group [(ngModel)]="inptText[question.idQuestion]">
+            <mat-radio-button *ngFor="let answer of question.answers"
+                              value="{{answer.idAnswer}}">
+              {{answer.variant}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <div *ngSwitchCase="2">
+            <mat-checkbox *ngFor="let answer of question.answers"
+                          value="{{answer.idAnswer}}"
+                          [(ngModel)]="checked[answer.idAnswer]">
+              {{answer.variant}}
+            </mat-checkbox>
+        </div>
+
+        <div *ngSwitchCase="3">
+          <mat-form-field>
+            <input matInput placeholder="{{question.questionText}}" [(ngModel)]="inptText[question.idQuestion]">
+          </mat-form-field>
+        </div>
+
+        <div *ngSwitchCase="4">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="inptText[question.idQuestion]">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+        </div>
+
+        <div *ngSwitchCase="5">
+          <mat-form-field>
+            <mat-select placeholder="{{question.questionText}}" [(ngModel)]="inptText[question.idQuestion]">
+              <mat-option *ngFor="let doctor of doctors" [value]="doctor.idDoctor">
+                {{ doctor.firstName | slice:0:1 }}. {{ doctor.middleName | slice:0:1 }}. {{ doctor.lastName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br/>
+        </div>
+
+        <div *ngSwitchDefault>I don't know wo hapn, but smth gos wron </div>
+
+      </div>
+    </mat-card>
+    <br/>
+  </div>
+</div>
+<br/>
+<button mat-raised-button (click)="prevButton()" [disabled]="!currentBlock">Prev</button>
+<button mat-raised-button (click)="nextButton()" [disabled]="(currentBlock==this.que?.questionBlocks.length-1)">Next</button>
+<button mat-raised-button (click)="saveButton()" [disabled]="savable">Save</button>
+

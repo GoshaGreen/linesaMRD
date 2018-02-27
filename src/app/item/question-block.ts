@@ -3,8 +3,8 @@ import {Question} from './question';
 
 export class QuestionBlock {
   idQuestionBlock: number;
-/*  questions: Question[];
-  questionnaire: Questionnaire;*/
+  questions: Question[];
   questionBlockText: string;
-
 }
+/*
+questionnaire: Questionnaire;*/

@@ -5,7 +5,6 @@ import {Answer} from './answer';
 export class Question {
   idQuestion: number;
   questionType: QuestionType;
-  questionBlock: QuestionBlock;
   activatingVariant: Answer;
   answers: Answer[];
   questionText: string;

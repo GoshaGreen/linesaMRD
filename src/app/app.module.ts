@@ -15,7 +15,6 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import {AppRoutingModule} from './app-routing.module';
-import { EditComponent } from './edit/edit.component';
 import {QuestionnaireService} from './service/questionnaire.service';
 
 
@@ -25,7 +24,6 @@ import {QuestionnaireService} from './service/questionnaire.service';
     MainComponent,
     VisitstableComponent,
     QuestionnaireComponent,
-    EditComponent
   ],
   imports: [
     BrowserModule,

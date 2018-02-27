@@ -6,6 +6,7 @@ import { Questionnaire} from '../item/questionnaire';
 import { Question} from '../item/question';
 import { QuestionBlock } from '../item/question-block';
 import { QuestionType } from '../item/question-type';
+import {Doctor} from '../item/doctor';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,6 +20,7 @@ export class QuestionnaireService {
   private questionBlockUrl = this.Url + 'QuestionBlock';
   private questionUrl = this.Url + 'Question';
   private questionTypeUrl = this.Url + 'QuestionType';
+  private doctorUrl = this.Url + 'Doctor';
 
   constructor(
     private http: HttpClient ) { }
@@ -29,29 +31,23 @@ export class QuestionnaireService {
  * запроос по номеру блока?
  * */
 
+  getAnys(text: String): Observable<any> {
+    const url = `${this.Url}/${text}`;
+    return this.http.get<any>(url);
+  }
+
   getVisit(id: number): Observable<Visit>  {
     const url = `${this.visitUrl}/${id}`;
     return this.http.get<Visit>(url);
   }
 
-  getQuestionnaire(id: number): Observable<any> {
+  getDoctor(id: number): Observable<Doctor> {
+    const url = `${this.doctorUrl}/${id}`;
+    return this.http.get<Doctor>(url);
+  }
+
+  getQuestionnaire(id: number): Observable<Questionnaire> {
     const url = `${this.questionnaireUrl}/${id}`;
-    return this.http.get<any>(url);
+    return this.http.get<Questionnaire>(url);
   }
-
-  getQuestionBlock(id: number): Observable<QuestionBlock> {
-    const url = `${this.questionBlockUrl}/${id}`;
-    return this.http.get<QuestionBlock>(url);
-  }
-
-  getQuestionType(id: number): Observable<QuestionType> {
-    const url = `${this.questionTypeUrl}/${id}`;
-    return this.http.get<QuestionType>(url);
-  }
-
-  getQuestion(id: number): Observable<Question> {
-    const url = `${this.questionUrl}/${id}`;
-    return this.http.get<Question>(url);
-  }
-
 }
