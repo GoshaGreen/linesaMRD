@@ -7,9 +7,14 @@ import { Question} from '../item/question';
 import { QuestionBlock } from '../item/question-block';
 import { QuestionType } from '../item/question-type';
 import {Doctor} from '../item/doctor';
+import {Patient} from '../item/patient';
+import {Answer} from '../item/answer';
+import {Testt} from '../item/testt';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'})
 };
 
 @Injectable()
@@ -49,5 +54,33 @@ export class QuestionnaireService {
   getQuestionnaire(id: number): Observable<Questionnaire> {
     const url = `${this.questionnaireUrl}/${id}`;
     return this.http.get<Questionnaire>(url);
+  }
+
+  saveVisit(visit: Visit): Observable<Visit> {
+    console.log('service save Visit not in good condition');
+    console.log(visit);
+    return this.http.post<Visit>(this.visitUrl, visit, httpOptions);
+  }
+
+  addPatient (patient: Patient): Patient {
+    console.log('patient saver bad');
+    return patient;
+  }
+
+  getAnswer(): Observable<Answer> {
+    console.log('answer getting method ' + this.Url + 'Answer/7');
+    return this.http.get<Answer>(this.Url + 'Answer/7');
+  }
+
+  addAnswer(answer: Answer): Observable<Answer> {
+    console.log('answer saving method');
+    console.log(answer);
+    return this.http.post<Answer>(this.Url + 'Answer', answer, httpOptions);
+  }
+
+  sendTestt(testt: Testt): Observable<Testt> {
+    console.log('send');
+    console.log(this.Url + 'Testt');
+    return this.http.put<Testt>(this.Url + 'Testt', testt, httpOptions);
   }
 }
